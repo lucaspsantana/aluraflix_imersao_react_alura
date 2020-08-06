@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; //lib do react
+import ReactDOM from 'react-dom'; //lib para roteamento
 import './index.css';
 import App from './pages/home/App';
 import CadastroVideo from './pages/cadastro/video'
 import CadastroCategoria from './pages/cadastro/categoria'
 
-import {BrowserRouter, Switch, Route} from "react-router-dom"
+import {BrowserRouter, Switch, Route} from "react-router-dom" //roteamento reativo sem refresh da pagina 
 
 
-function _404(){
+function _404(){ //página 404
   return(
     <div>
       <h1>404</h1>
