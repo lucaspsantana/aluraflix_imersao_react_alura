@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
 import PageDefault from '../../../components/PageDefault'
 import { Link } from 'react-router-dom'
+import FormField from '../../../components/FormField'
+import Button from '../../../components/Button'
 
 function CadastroCategoria(){
   const [categorias, setCategorias] = useState([]);
   const initialValues ={
-    name: "Movies",
-    description: "The good movie",
-    color: "#fff"    
+    name: "",
+    description: "",
+    color: ""    
   };
   const [values, setValues] = useState(initialValues);
 
@@ -16,9 +18,11 @@ function CadastroCategoria(){
       ...values,
       [key]:val
     })
-  
   }
- 
+  function setHandleChange(info){
+    setValue(info.target.getAttribute("name"),
+    info.target.value);
+  }
     return(
       <PageDefault >
         <div>
@@ -28,38 +32,19 @@ function CadastroCategoria(){
           setCategorias([
             ...categorias,
             values
-          ]);          
+          ]);  
+          setValues(initialValues)        
         }}>
-          <div>
-          <label>
-            Nome da Categoria
+          <FormField label="Nome da Categoria" name="name" value={values.name} type="text" onChange={setHandleChange} />
+
+          <FormField label="Descrição" type="textarea" name="description" value={values.description} onChange={setHandleChange} />    
+      
+          <FormField label="Cor" type="color" name="color" value={values.color} onChange={setHandleChange}/>
           
-          <input type="text" name="name" value={values.name} onChange={ function setHandle(info){
-              setValue("name",info.target.value);
-         }}/>
-          </label>
-          </div>
-          <div>
-          <label>
-            Descrição          
-          <textarea type="text" name="description" value={values.description} onChange={ function setHandle(info){
-              setValue("description",info.target.value);
-            }}/>
-          </label>
-          </div>
-          <div>
-          <label>
-            Cor
-          
-          <input type="color" name="color" value={values.color} onChange={ function setHandle(info){
-              setValue("color",info.target.value);
-            }}/>
-          </label>
-          </div>
-          
-          <div>
-          <button>Cadastrar</button>
-          </div>
+          <Button>
+            Cadastrar
+          </Button>
+
         </form>
         <ul>
           {categorias.map((categoria, indice)=>{
